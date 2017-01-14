@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<meta charset="UTF-8">
+	<title>Hangman: Play</title>
+	
+	<style> 
+		body { background-color: black; color: white; font-size: large; }
+		button { background-color: white ; color: black; width: 2em; margin: 0.1em; }
+		button:disabled { background-color: grey; color: grey; }
+		#displayed-word { color: yellow; }
+		#new-game { width: 14em;}
+	</style>
+	
+</head>
+
+<body>
+
+<!-- TITLE -->
+<div class="row text-center"><h1>HANGMAN</h1></div>
+
+<!-- ROW 1: WORD -->
+<div class="row text-center"><h2 id="displayed-word"></h2></div>
+
+<!-- ROW 2 -->
+<div class="row">
+
+<!-- ROW 2: LEFT HALF: HANGMAN -->
+<div class="col-md-4"></div>
+<div class="col-md-2">
+<pre id="hangman0">
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+</pre>
+<pre id="hangman1">
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+   ---------------+
+                   
+                   
+                   
+</pre>
+<pre id="hangman2">
+                   
+                  +
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+   ---------------+
+                   
+                   
+                   
+</pre>
+<pre id="hangman3">
+                   
+                  +
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                   
+                   
+</pre>
+<pre id="hangman4">
+                   
+          +-------+
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                   
+                   
+</pre>
+<pre id="hangman5">
+                   
+          +-------+
+          |       |
+          |       |
+          O       |
+                  |
+                  |
+                  |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                   
+                   
+</pre>
+<pre id="hangman6">
+                   
+          +-------+
+          |       |
+          |       |
+          O       |
+         /+       |
+                  |
+                  |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                   
+                   
+</pre>
+<pre id="hangman7">
+                   
+          +-------+
+          |       |
+          |       |
+          O       |
+         /+\      |
+                  |
+                  |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                   
+                   
+</pre>
+<pre id="hangman8">
+                   
+          +-------+
+          |       |
+          |       |
+          O       |
+         /+\      |
+          |       |
+         /        |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+                    
+                   
+</pre>
+<pre id="hangman9">
+                   
+          +-------+
+          |       |
+          |       |
+          O       |
+         /+\      |
+          |       |
+         / \      |
+                  |
+                 /|
+                / |
+   ------------/--+
+                   
+      GAME OVER :( 
+                   
+</pre>
+
+<!-- NEW GAME -->
+<div><button id="new-game" class="btn btn-success" onclick="newGame()">New Game</button></div>
+</div>
+
+<!-- ROW 2: RIGHT HALF: ALPHABETS -->
+<div class="col-md-2">
+<!-- Alphabets -->
+<div>
+<button id="btnA" class="btn btn-link" onclick="keyPressed(this);">A</button>
+<button id="btnB" class="btn btn-link" onclick="keyPressed(this);">B</button>
+<button id="btnC" class="btn btn-link" onclick="keyPressed(this);">C</button>
+</div>
+<div>
+<button id="btnD" class="btn btn-link" onclick="keyPressed(this);">D</button>
+<button id="btnE" class="btn btn-link" onclick="keyPressed(this);">E</button>
+<button id="btnF" class="btn btn-link" onclick="keyPressed(this);">F</button>
+</div>
+<div>
+
+<button id="btnG" class="btn btn-link" onclick="keyPressed(this);">G</button>
+<button id="btnH" class="btn btn-link" onclick="keyPressed(this);">H</button>
+<button id="btnI" class="btn btn-link" onclick="keyPressed(this);">I</button>
+</div>
+<div>
+
+<button id="btnJ" class="btn btn-link" onclick="keyPressed(this);">J</button>
+<button id="btnK" class="btn btn-link" onclick="keyPressed(this);">K</button>
+<button id="btnL" class="btn btn-link" onclick="keyPressed(this);">L</button>
+</div>
+<div>
+
+<button id="btnM" class="btn btn-link" onclick="keyPressed(this);">M</button>
+<button id="btnN" class="btn btn-link" onclick="keyPressed(this);">N</button>
+<button id="btnO" class="btn btn-link" onclick="keyPressed(this);">O</button>
+</div>
+<div>
+
+<button id="btnP" class="btn btn-link" onclick="keyPressed(this);">P</button>
+<button id="btnQ" class="btn btn-link" onclick="keyPressed(this);">Q</button>
+<button id="btnR" class="btn btn-link" onclick="keyPressed(this);">R</button>
+</div>
+<div>
+
+<button id="btnS" class="btn btn-link" onclick="keyPressed(this);">S</button>
+<button id="btnT" class="btn btn-link" onclick="keyPressed(this);">T</button>
+<button id="btnU" class="btn btn-link" onclick="keyPressed(this);">U</button>
+</div>
+<div>
+
+<button id="btnV" class="btn btn-link" onclick="keyPressed(this);">V</button>
+<button id="btnW" class="btn btn-link" onclick="keyPressed(this);">W</button>
+<button id="btnX" class="btn btn-link" onclick="keyPressed(this);">X</button>
+</div>
+<div>
+<button id="btnY" class="btn btn-link" onclick="keyPressed(this);">Y</button>
+<button id="btnZ" class="btn btn-link" onclick="keyPressed(this);">Z</button>
+</div>
+
+<div class="col-md-4"></div>
+</div>
+</div>
+
+<script>
+var hangmen = [
+               document.getElementById("hangman0"),
+               document.getElementById("hangman1"),
+               document.getElementById("hangman2"),
+               document.getElementById("hangman3"),
+               document.getElementById("hangman4"),
+               document.getElementById("hangman5"),
+               document.getElementById("hangman6"),
+               document.getElementById("hangman7"),
+               document.getElementById("hangman8"),
+               document.getElementById("hangman9")];
+
+var alphabets = [
+                 document.getElementById("btnA"),
+                 document.getElementById("btnB"),
+                 document.getElementById("btnC"),
+                 document.getElementById("btnD"),
+                 document.getElementById("btnE"),
+                 document.getElementById("btnF"),
+                 document.getElementById("btnG"),
+                 document.getElementById("btnH"),
+                 document.getElementById("btnI"),
+                 document.getElementById("btnJ"),
+                 document.getElementById("btnK"),
+                 document.getElementById("btnL"),
+                 document.getElementById("btnM"),
+                 document.getElementById("btnN"),
+                 document.getElementById("btnO"),
+                 document.getElementById("btnP"),
+                 document.getElementById("btnQ"),
+                 document.getElementById("btnR"),
+                 document.getElementById("btnS"),
+                 document.getElementById("btnT"),
+                 document.getElementById("btnU"),
+                 document.getElementById("btnV"),
+                 document.getElementById("btnW"),
+                 document.getElementById("btnX"),
+                 document.getElementById("btnY"),
+                 document.getElementById("btnZ")];
+
+<!-- Set graphic display -->
+function updateHangmanIndex(currentIndex) {
+	for (var x = 0; x < hangmen.length; x++) hangmen[x].style.display = "none";
+	hangmen[currentIndex].style.display = "block";
+}
+
+ <!-- Disable previously guessed letters -->
+function disablePreviousGuesses(previousGuesses) {
+	
+	for (var x = 0; x < alphabets.length; x++) alphabets[x].disabled = false;
+	
+	 if (previousGuesses != null) {
+		 previousGuesses = previousGuesses.split('');
+		 for (var y = 0; y < previousGuesses.length; y++) {
+			 for (var z = 0; z < alphabets.length; z++) {			 
+				 if (alphabets[z].innerHTML == previousGuesses[y]) alphabets[z].disabled = true;
+			 }
+		 }
+	} 
+}
+
+<!-- Update displayed word -->
+function updateDisplayedWord(displayedWord) {
+	document.getElementById("displayed-word").innerHTML = displayedWord;
+}
+
+<!-- Show new game button -->
+function showNewGameButton(gameOver) {
+	if (gameOver == 1) {
+		disablePreviousGuesses("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		document.getElementById("new-game").style.display = "block";
+	} else document.getElementById("new-game").style.display = "none";
+}
+
+<!-- Load page -->
+function loadPage(displayedWord, currentIndex, previousGuesses, gameOver) {
+	
+	updateDisplayedWord(displayedWord);
+	updateHangmanIndex(currentIndex);
+	disablePreviousGuesses(previousGuesses);
+	showNewGameButton(gameOver);
+	
+}
+
+function keyPressed(btn) {
+		
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			
+			var displayedWord = xhr.getResponseHeader("displayed-word");
+			var currentIndex = xhr.getResponseHeader("current-index");
+			var previousGuesses = xhr.getResponseHeader("previous-guesses");
+			var gameOver = xhr.getResponseHeader("game-over");
+			
+			loadPage(displayedWord, currentIndex, previousGuesses, gameOver);
+		}
+	}
+	
+	xhr.open('POST', '/HangmanGame/guess', true);
+	xhr.send(btn.innerHTML);
+}
+
+function newGame() {
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			
+			var displayedWord = xhr.getResponseHeader("displayed-word");			
+			var currentIndex = xhr.getResponseHeader("current-index");
+			var previousGuesses = xhr.getResponseHeader("previous-guesses");
+			var gameOver = xhr.getResponseHeader("game-over");
+
+			loadPage(displayedWord, currentIndex, previousGuesses, gameOver);
+		}
+	}
+
+	xhr.open('GET', '/HangmanGame/new', true);
+	xhr.send();
+}
+
+<!-- Performed once on load -->
+newGame();
+
+</script>
+</body>
+</html>

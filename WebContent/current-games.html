@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<meta charset="UTF-8" http-equiv="refresh" content="5">
+	<title>Hangman: Current games</title>
+	
+	<style> 
+		body { background-color: black; color: white; font-size: large; }
+		table, th, td { border: 1px solid white; }
+		th, td { padding: 5px; text-align: center; }
+	</style>
+	
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			
+			if (xhr.readyState == XMLHttpRequest.DONE) {
+				console.log(xhr.responseText);
+				document.getElementById("response").innerHTML = xhr.responseText;
+			}
+		}
+		xhr.open('GET', '/HangmanGame/current-games', true);
+		xhr.send();
+	</script>
+	
+</head>
+
+<body>
+<div class="row text-center"><h1>HANGMAN</h1></div>
+<div class="row text-center"><h3>Currently playing...</h3></div>
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr><th>Player</th><th>State</th><th>Guesses Remaining</th></tr>
+		</thead>
+		<tbody id ="response">
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+  <display-name>HangmanGame</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>res/index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>NewGameServlet</servlet-name>
+    <servlet-class>com.github.yinyee.hangman.NewGameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GuessLetterServlet</servlet-name>
+    <servlet-class>com.github.yinyee.hangman.GuessLetterServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CurrentGamesServlet</servlet-name>
+    <servlet-class>com.github.yinyee.hangman.CurrentGamesServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>NewGameServlet</servlet-name>
+    <url-pattern>/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GuessLetterServlet</servlet-name>
+    <url-pattern>/guess</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CurrentGamesServlet</servlet-name>
+    <url-pattern>/current-games</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
